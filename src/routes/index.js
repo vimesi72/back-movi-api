@@ -7,7 +7,7 @@ const router = express.Router();
 
 // colocar las rutas aquí
 router.use("/genres", routerGenre);
-router.use("/Actors", routerActor);
+router.use("/actors", routerActor);
 router.use("/directors", routerDirector);
 router.use("/movies", routerMovie);
 
