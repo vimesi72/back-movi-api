@@ -97,8 +97,8 @@ test('POST => "BASE_URL/:id/actors" should return status code 200 and res.body.[
   expect(res.body).toBeDefined();
   expect(res.body).toHaveLength(1);
 
-  expect(res.body[0].movieActor.actorId).toBe(actor.id);
   expect(res.body[0].movieActor.movieId).toBe(movieId);
+  expect(res.body[0].movieActor.actorId).toBe(actor.id);
 });
 
 test('POST => "BASE_URL/:id/directors" should return status code 200 and res.body.[0].movieDirector.directorId ==== director.id', async () => {
@@ -110,8 +110,8 @@ test('POST => "BASE_URL/:id/directors" should return status code 200 and res.bod
   expect(res.body).toBeDefined();
   expect(res.body).toHaveLength(1);
 
-  expect(res.body[0].movieDirector.directorId).toBe(director.id);
   expect(res.body[0].movieDirector.movieId).toBe(movieId);
+  expect(res.body[0].movieDirector.directorId).toBe(director.id);
 });
 
 test('POST => "BASE_URL/:id/genres" should return status code 200 and res.body.[0].movieGenre.genreId ==== genre.id', async () => {
@@ -123,8 +123,8 @@ test('POST => "BASE_URL/:id/genres" should return status code 200 and res.body.[
   expect(res.body).toBeDefined();
   expect(res.body).toHaveLength(1);
 
-  expect(res.body[0].movieGenre.genreId).toBe(genre.id);
   expect(res.body[0].movieGenre.movieId).toBe(movieId);
+  expect(res.body[0].movieGenre.genreId).toBe(genre.id);
 });
 
 /*
