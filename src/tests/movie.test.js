@@ -4,6 +4,7 @@ const app = require("../app");
 const Actor = require("../models/Actor");
 const Director = require("../models/Director");
 const Genre = require("../models/Genre");
+const Movie = require("../models/Movie");
 
 let movieId;
 let movie;
@@ -88,7 +89,6 @@ test("PUT -> 'BASE_URL/:id' should return status code 200, and res.body.name ===
 
 /* test de los Set*/
 test('POST => "BASE_URL/:id/actors" should return status code 200 and res.body.[0].movieActor.actorId ==== actor.id', async () => {
-  console.log(movie);
   const res = await request(app)
     .post(`${BASE_URL}/${movieId}/actors`)
     .send([actor.id]);
@@ -100,6 +100,43 @@ test('POST => "BASE_URL/:id/actors" should return status code 200 and res.body.[
   expect(res.body[0].movieActor.actorId).toBe(actor.id);
   expect(res.body[0].movieActor.movieId).toBe(movieId);
 });
+
+test('POST => "BASE_URL/:id/directors" should return status code 200 and res.body.[0].movieDirector.directorId ==== director.id', async () => {
+  const res = await request(app)
+    .post(`${BASE_URL}/${movieId}/directors`)
+    .send([director.id]);
+
+  expect(res.statusCode).toBe(200);
+  expect(res.body).toBeDefined();
+  expect(res.body).toHaveLength(1);
+
+  expect(res.body[0].movieDirector.directorId).toBe(director.id);
+  expect(res.body[0].movieDirector.movieId).toBe(movieId);
+});
+
+test('POST => "BASE_URL/:id/genres" should return status code 200 and res.body.[0].movieGenre.genreId ==== genre.id', async () => {
+  const res = await request(app)
+    .post(`${BASE_URL}/${movieId}/genres`)
+    .send([genre.id]);
+
+  expect(res.statusCode).toBe(200);
+  expect(res.body).toBeDefined();
+  expect(res.body).toHaveLength(1);
+
+  expect(res.body[0].movieGenre.genreId).toBe(genre.id);
+  expect(res.body[0].movieGenre.movieId).toBe(movieId);
+});
+
+/*
+test("POST => 'BASE_URL', should return statusCode 201, and res.body.name === movie.name", async () => {
+    const res = await request(app).post(BASE_URL).send(movie);
+
+  expect(res.status).toBe(201);
+  expect(res.body).toBeDefined();
+  expect(res.body.name).toBe(movie.name);
+  expect(res.body.actorId).toBe(movie.actorId); //no existe actorId en el Body
+});
+
 /* Fin de los test Set*/
 
 test("DELETE -> 'BASE_URL/:id', should return status code 204", async () => {
